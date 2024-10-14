@@ -1,5 +1,8 @@
-import booksData from "../DATA/books.json" with {type: 'json'}
+import Data from "../DATA/books.json" with {type: 'json'}
 let count = 10;
+
+console.log(Data);
+
 
 function createBook(book) {
     // קריאה מ-LocalStorage
@@ -27,6 +30,10 @@ function getBook(id) {
     }
     return ("ERROR: book not faund");
 }
+
+function getAllBooks() {
+    const booksData = localStorage.getItem('books');
+    return booksData ? JSON.parse(booksData) : []; }
 
 function updateBook(book) {
     let booksData = JSON.parse(localStorage.getItem('books'));
@@ -59,3 +66,76 @@ function deleteBook(id) {
     }
 
 }
+
+function start(){
+    if(!localStorage.getItem("books")){
+        localStorage.setItem('books', JSON.stringify(Data.books));
+    }
+}
+
+function presentingBooks() {
+    let books = getAllBooks();
+    console.log("books: ", books);
+    const booksContainer = document.getElementById("booksContainer");
+    if (!Array.isArray(books)) {
+        console.error("books is not an array:", books);
+        return;
+    }
+    // ניצור את המבנה של הטבלה
+    let tableHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Read</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    // כל ספר יהיה שורה בטבלה
+    books.forEach(book => {
+        tableHTML += `
+            <tr id="${book.id}">
+                <td>${book.id}</td>
+                <td>${book.title}</td>
+                <td>${book.price}</td>
+                <td><button on class="bookRead">Read</button></td>
+                <td><button class="bookUpdate">Update</button></td>
+                <td><button class="bookDelete">Delete</button></td>
+            </tr>
+        `;
+    });
+
+    // נסגור את ה-tbody וה-table
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    // נכניס את הטבלה לאלמנט ה-booksContainer
+    booksContainer.innerHTML = tableHTML;
+}
+
+
+function showBookDetails(bookId) {
+    let book = getBook(bookId);
+    const showBook = document.getElementById("showBookDetails");
+    showBook.innerHTML = `
+    <div></div>
+    <div><img src="${book.imageURL}" alt="${book.title}"/></div>
+    <div></div>
+
+    
+    
+    `;
+
+
+}
+
+start();
+presentingBooks();
