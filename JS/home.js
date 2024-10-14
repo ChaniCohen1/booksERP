@@ -4,6 +4,8 @@ let count = 10;
 console.log(Data);
 
 
+
+
 function createBook(book) {
     // קריאה מ-LocalStorage
     let booksData = JSON.parse(localStorage.getItem('books') || '[]');
@@ -33,7 +35,8 @@ function getBook(id) {
 
 function getAllBooks() {
     const booksData = localStorage.getItem('books');
-    return booksData ? JSON.parse(booksData) : []; }
+    return booksData ? JSON.parse(booksData) : [];
+}
 
 function updateBook(book) {
     let booksData = JSON.parse(localStorage.getItem('books'));
@@ -53,24 +56,52 @@ function updateBook(book) {
 
 function deleteBook(id) {
     let booksData = JSON.parse(localStorage.getItem('books'));
+    console.log("deleteBook", booksData);
+    
     if (booksData) {
-        let bookIndex = booksData.findIndex(item => item.id == book.id)
-        if (bookIndex != -1) {
-            booksData.splice(bookIndex,1);
-            localStorage.setItem('books', JSON.stringify(booksData));
-            console.log("Book delete successfully!");
-        }
+        let books = booksData.filter(book => book.id != id);
+        console.log(books, "filter");
+        
+        localStorage.setItem('books', JSON.stringify(books));
+        console.log("Book delete successfully!");
+        presentingBooks();
     }
     else {
         console.log("Book not found!");
     }
-
 }
 
-function start(){
-    if(!localStorage.getItem("books")){
+function start() {
+    if (!localStorage.getItem("books")) {
         localStorage.setItem('books', JSON.stringify(Data.books));
     }
+    const booksContainer = document.getElementById("booksContainer");
+    booksContainer.addEventListener('click', (event) => {
+        const isButton = event.target.nodeName === 'BUTTON';
+        if (!isButton) {
+            return;
+        }
+        // אם נלחץ כפתור מחיקה
+        if (event.target.classList.contains('bookDelete')) {
+            console.log("Delete Event", event.target.parentElement.parentElement.id);
+            deleteBook(event.target.parentElement.parentElement.id); 
+        }
+        if (event.target.classList.contains('bookUpdate')) {
+            console.log("Update Event", event.target.parentElement.parentElement.id);
+            deleteBook(event.target.parentElement.id); 
+
+        }
+        if (event.target.classList.contains('bookRead')) {
+            console.log("Read Event", event.target.parentElement.id);
+            deleteBook(event.target.parentElement.id); 
+
+        }
+    }
+    );
+
+
+
+
 }
 
 function presentingBooks() {
@@ -104,7 +135,7 @@ function presentingBooks() {
                 <td>${book.id}</td>
                 <td>${book.title}</td>
                 <td>${book.price}</td>
-                <td><button on class="bookRead">Read</button></td>
+                <td><button class="bookRead">Read</button></td>
                 <td><button class="bookUpdate">Update</button></td>
                 <td><button class="bookDelete">Delete</button></td>
             </tr>
@@ -128,7 +159,9 @@ function showBookDetails(bookId) {
     showBook.innerHTML = `
     <div></div>
     <div><img src="${book.imageURL}" alt="${book.title}"/></div>
-    <div></div>
+    <div>
+
+    </div>
 
     
     

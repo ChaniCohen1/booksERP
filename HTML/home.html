@@ -13,11 +13,30 @@
         <h1>Bookshop ERP</h1>
     </div>
     <div id="addBook">
-        <button onclick="" id="addBookButton">+new book</button>
+        <button onclick="createBook(event)" id="addBookButton">+new book</button>
     </div>
     <div>
         <div id="booksContainer"></div>
-        <div id="showBookDetails"></div>
+        <div>
+            <div id="showBookDetails"></div>
+            <div id="showAddBook">
+                <form>
+                    <label>
+                        <input type="text">
+                    </label>
+                    <label>
+                        <input type="number">
+                    </label>
+                    <label>
+                        <input type="file">
+                    </label>
+                    <button type="submit">Add Book</button>
+                </form>
+            </div>
+            <div id="showUpdateBook"></div>
+
+        </div>
+
     </div>
     <script type="module" src="../JS/home.js"></script>
 </body>
