@@ -13,24 +13,27 @@
         <h1>Bookshop ERP</h1>
     </div>
     <div id="addBook">
-        <button onclick="createBook(event)" id="addBookButton">+new book</button>
+        <button id="addBookButton">+new book</button>
     </div>
-    <div>
+    <div id="content">
         <div id="booksContainer"></div>
         <div>
             <div id="showBookDetails"></div>
             <div id="showAddBook">
-                <form>
-                    <label>
-                        <input type="text">
+                <form id="formAddBook"> +Add book
+                    <label> title:
+                        <input id="addTitle" type="text">
                     </label>
-                    <label>
-                        <input type="number">
+                    <label> price:
+                        <input id="addPrice" type="number">
                     </label>
-                    <label>
-                        <input type="file">
+                    <label> rate:
+                        <input id="addRate" type="number" min="1" max="10">
                     </label>
-                    <button type="submit">Add Book</button>
+                    <label> image url:
+                        <input id="addImageURL" type="file">
+                    </label>
+                    <input type="submit" value="add">
                 </form>
             </div>
             <div id="showUpdateBook"></div>

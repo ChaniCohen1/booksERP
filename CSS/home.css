@@ -1,0 +1,211 @@
+/* #content{
+    display: grid;
+    grid-template-columns: 70% 25%
+}
+
+
+#formAddBook{
+    display: flex;
+    flex-direction: column;
+}
+.showWindow{
+
+} */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+#header {
+    background-color: #a0aec0; /* אפור */
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Add Book Button */
+#addBook {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#addBookButton {
+    background-color: #a0aec0; /* אפור */
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#addBookButton:hover {
+    background-color: #718096; /* גוון כהה יותר של אפור */
+    transform: translateY(-3px);
+}
+
+/* Content Area */
+#content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 30px;
+}
+
+/* Books Table (70%) */
+#booksContainer {
+    flex-basis: 70%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table thead {
+    background-color: #edf2f7;
+    color: #4a5568;
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+table th {
+    font-weight: 600;
+}
+
+table tr:hover {
+    background-color: #f0f4f8;
+}
+
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.bookRead {
+    background-color: #48bb78;
+    color: white;
+}
+
+.bookUpdate {
+    background-color: #ecc94b;
+    color: white;
+}
+
+.bookDelete {
+    background-color: #f56565;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* Right-side section (25%) */
+#showBookDetails,
+#showAddBook,
+#showUpdateBook {
+    flex-basis: 25%;
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+#showBookDetails img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.showWindow {
+    margin-bottom: 20px;
+}
+
+/* Add Book Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 1rem;
+    color: #4a5568;
+}
+
+input[type="text"], input[type="number"], input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="file"]:focus {
+    border-color: #5a67d8;
+    outline: none;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    color: white;
+    background-color: #5a67d8;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #434190;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #content {
+        flex-direction: column;
+    }
+
+    #booksContainer, 
+    #showBookDetails, 
+    #showAddBook, 
+    #showUpdateBook {
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+}
